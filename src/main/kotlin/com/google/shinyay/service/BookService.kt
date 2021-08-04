@@ -1,9 +1,7 @@
 package com.google.shinyay.service
 
 import com.google.shinyay.entity.Book
-import com.google.shinyay.logger
 import com.google.shinyay.repository.BookJdbcRepository
-import com.google.shinyay.repository.BookRepository
 import org.springframework.stereotype.Service
 
 @Service
