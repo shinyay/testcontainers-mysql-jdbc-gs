@@ -12,7 +12,7 @@ class BookJdbcRepository(val jdbcTemplate: JdbcTemplate) {
         return jdbcTemplate.query("select * from books", BookRowMapper())
     }
 
-    fun findBooksByIsbn(isbn: String): MutableList<Book> {
+    fun findBookByIsbn(isbn: String): MutableList<Book> {
         return jdbcTemplate.query("select * from books where isbn = ?", BookRowMapper(), isbn)
     }
 
