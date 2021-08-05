@@ -12,16 +12,16 @@ class BookController(val service: BookService) {
 
     @GetMapping("/books")
     fun findAllBooks(): ResponseEntity<MutableList<Book>> {
-        return ResponseEntity.status(HttpStatus.OK).body(service.repository.findAllBooks())
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAllBooks())
     }
 
-//    @GetMapping("/books/{isbn}")
-//    fun findBookByIsbn(@PathVariable isbn: String): ResponseEntity<List<Book>> {
-//        return ResponseEntity.status(HttpStatus.OK).body(service.findBookByIsbn(isbn))
-//    }
-//
-//    @PostMapping("/books")
-//    fun registerBook(@RequestBody book: Book): ResponseEntity<Book> {
-//        return ResponseEntity.status(HttpStatus.CREATED).body(service.repository.save(book))
-//    }
+    @GetMapping("/books/{isbn}")
+    fun findBookByIsbn(@PathVariable isbn: String): ResponseEntity<List<Book>> {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findBookByIsbn(isbn))
+    }
+
+    @PostMapping("/books")
+    fun registerBook(@RequestBody book: Book): ResponseEntity<Int> {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.repository.saveBook(book))
+    }
 }
