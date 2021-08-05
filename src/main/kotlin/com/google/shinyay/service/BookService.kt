@@ -1,6 +1,7 @@
 package com.google.shinyay.service
 
 import com.google.shinyay.entity.Book
+import com.google.shinyay.logger
 import com.google.shinyay.repository.BookJdbcRepository
 import org.springframework.stereotype.Service
 
@@ -11,8 +12,8 @@ class BookService(val repository: BookJdbcRepository) {
         return repository.findAllBooks()
     }
 
-//    fun findBookByIsbn(isbn: String): MutableList<Book> {
-//        logger.info("[ISBN]: $isbn")
-//        return repository.findBookByIsbn(isbn)
-//    }
+    fun findBookByIsbn(isbn: String): MutableList<Book> {
+        logger.info("[ISBN]: $isbn")
+        return repository.findBookByIsbn(isbn)
+    }
 }
