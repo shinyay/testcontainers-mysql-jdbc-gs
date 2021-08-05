@@ -11,4 +11,9 @@ class BookJdbcRepository(val jdbcTemplate: JdbcTemplate) {
     fun findAllBooks(): MutableList<Book> {
         return jdbcTemplate.query("select * from books", BookRowMapper())
     }
+
+    fun saveBook(book: Book): Int {
+        return jdbcTemplate.update("insert into books (isbn, title, author, price) values (?,?,?,?)",
+            book.isbn, book.title, book.author, book.price)
+    }
 }
