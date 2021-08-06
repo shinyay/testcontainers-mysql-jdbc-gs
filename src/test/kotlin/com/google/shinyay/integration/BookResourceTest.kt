@@ -30,6 +30,15 @@ class BookResourceTest {
     lateinit var objectMapper: ObjectMapper
 
     @Test
+    fun shouldReturnAllBooks() {
+        mockMvc.perform(get("/api/v1/books"))
+            .andDo(MockMvcResultHandlers.print())
+            .andExpect(status().isOk)
+            .andExpect(jsonPath("$.length()").value(3))
+            .andExpect(jsonPath("$.[0].title").value("Spring"))
+    }
+
+    @Test
     fun shouldCreateBook() {
         val json = objectMapper.writeValueAsString(
             Book(id = 0, isbn = "978-4-7710-1067-3",title = "test", author = "shinyay", price = 100)
