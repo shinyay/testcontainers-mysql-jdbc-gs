@@ -9,10 +9,11 @@ import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
+import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.MySQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import javax.sql.DataSource
+import org.testcontainers.utility.DockerImageName
 
 @Testcontainers
 @DataJdbcTest
@@ -21,10 +22,14 @@ class RepositoryTest {
 
     @Autowired
     lateinit var repository: BookJdbcRepository
-    
+
     companion object {
         @Container
-        val databaseContainer = MySQLContainer<Nothing>("mysql:5.7.33")
+        @JvmStatic
+        var databaseContainer = MySQLContainer<Nothing>(DockerImageName.parse("mysql:5.7.33")).apply {
+            withDatabaseName("test")
+        }
+
 
         @DynamicPropertySource
         @JvmStatic
