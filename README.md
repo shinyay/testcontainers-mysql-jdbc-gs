@@ -30,6 +30,7 @@ dependencyManagement {
 
 ### Unit Test - Slice Test
 @Testcontainers is not necessary to add because you don't use `@Container` to configure.
+@Import is needed to load Repository class
 
 ```kotlin
 @DataJTest
