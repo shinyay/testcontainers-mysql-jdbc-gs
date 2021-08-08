@@ -25,9 +25,10 @@ class RepositoryTest {
 
     companion object {
         @Container
-        @JvmStatic
         var databaseContainer = MySQLContainer<Nothing>(DockerImageName.parse("mysql:5.7.33")).apply {
             withDatabaseName("test")
+            withUsername("user")
+            withPassword("pwd")
         }
 
 
