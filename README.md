@@ -5,6 +5,28 @@
 - [MySQL Module](https://www.testcontainers.org/modules/databases/mysql/)
 
 ## Description
+### Dependencies
+Dependency for **Testcontainers**
+- `testImplementation`
+    - **org.testcontainers**
+        - junit-jupiter
+        - mysql
+
+```kotlin
+extra["testcontainersVersion"] = "1.15.3"
+dependencyManagement {
+	imports {
+		mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
+	}
+}
+```
+
+#### Dependencies for the Others
+- org.springframework.boot
+    - spring-boot-starter-data-jdbc
+    - spring-boot-starter-web
+- mysql:mysql-connector-java
+- org.flywaydb:flyway-core
 
 ## Demo
 
