@@ -7,6 +7,10 @@ import org.junit.jupiter.api.assertAll
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase
+import org.springframework.test.context.DynamicPropertyRegistry
+import org.springframework.test.context.DynamicPropertySource
+import org.testcontainers.containers.MySQLContainer
+import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
 import javax.sql.DataSource
 
@@ -17,21 +21,27 @@ class RepositoryTest {
 
     @Autowired
     lateinit var repository: BookJdbcRepository
+    
+    companion object {
+        @Container
+        val databaseContainer = MySQLContainer<Nothing>("mysql:5.7.33")
 
-    @Autowired
-    lateinit var dataSource: DataSource
+        @DynamicPropertySource
+        @JvmStatic
+        fun registerDynamicProperties(registry: DynamicPropertyRegistry) {
+            registry.add("spring.datasource.url", databaseContainer::getJdbcUrl)
+            registry.add("spring.datasource.username", databaseContainer::getUsername)
+            registry.add("spring.datasource.password", databaseContainer::getPassword)
+        }
 
-//    companion object {
-//        @Container
-//        val database = MySQLContainer<Nothing>("mysql:5.7.33")
-//
 //        fun datasource(): DataSource {
 //            val datasource = MysqlDataSource()
 //            datasource.setUrl(database.jdbcUrl)
 //            datasource.user = database.username
 //            datasource.password = database.password
 //        }
-//    }
+    }
+
     @Test
     fun findAllBooksShouldReturnCount() {
         val result = repository.findAllBooks()
