@@ -28,6 +28,17 @@ dependencyManagement {
 - mysql:mysql-connector-java
 - org.flywaydb:flyway-core
 
+### Unit Test - Slice Test
+@Testcontainers is not necessary to add because you don't use `@Container` to configure.
+
+```kotlin
+@DataJTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Import(BookJdbcRepository::class)
+class AppUnitTest {}
+```
+
+
 ## Demo
 
 ## Features
