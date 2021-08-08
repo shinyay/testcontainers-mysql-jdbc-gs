@@ -1,6 +1,8 @@
-# Name
+# Testcontainers for MySQL with Spring Data JDBC
 
-Overview
+**Testcontainers** is a Java library that supports JUnit tests, providing lightweight, throwaway instances of common databases, Selenium web browsers, or anything else that can run in a Docker container.
+
+- [MySQL Module](https://www.testcontainers.org/modules/databases/mysql/)
 
 ## Description
 
