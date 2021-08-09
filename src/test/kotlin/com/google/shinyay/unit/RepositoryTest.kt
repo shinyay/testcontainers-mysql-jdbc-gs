@@ -48,9 +48,18 @@ class RepositoryTest {
 
     @Test
     fun saveBookShouldReturnOne() {
-        val book = Book(isbn = "978-4-7710-1061-1", title = "Test", author = "shinyay", price = 500)
+        val book = Book(isbn = "978-4-7710-1061-1", title = "Persistence", author = "shinyay", price = 500)
         val result = repository.saveBook(book)
 
         assertThat(result).isEqualTo(1)
+    }
+
+    @Test
+    fun saveBookAndFindBookByIsbnShouldReturnBook() {
+        val book = Book(isbn = "978-4-7710-1061-2", title = "PersistenceAndFind", author = "shinyay", price = 550)
+        repository.saveBook(book)
+        val result = repository.findBookByIsbn("978-4-7710-1061-2")
+
+        assertThat(result[0].title).isEqualTo("PersistenceAndFin")
     }
 }
