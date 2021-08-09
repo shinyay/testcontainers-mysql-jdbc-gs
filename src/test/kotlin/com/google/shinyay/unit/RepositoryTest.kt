@@ -62,4 +62,11 @@ class RepositoryTest {
 
         assertThat(result[0].title).isEqualTo("PersistenceAndFind")
     }
+
+    @Test
+    fun deleteBookByIsbnShouldReturnOne() {
+        val result = repository.deleteByIsbn("978-4-7710-1063-3")
+
+        assertThat(result).isEqualTo(1)
+    }
 }
