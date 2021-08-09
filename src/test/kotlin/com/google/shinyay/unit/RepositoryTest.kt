@@ -37,4 +37,15 @@ class RepositoryTest {
 //        assertThat(result[1].title).isEqualTo("Java")
 //        assertThat(result[2].title).isEqualTo("GCP")
     }
+
+    @Test
+    fun findBookByIsbnShouldReturnBook() {
+        val result1 = repository.findBookByIsbn("978-4-7710-1061-3")
+        val result2 = repository.findBookByIsbn("978-4-7710-1062-3")
+        val result3 = repository.findBookByIsbn("978-4-7710-1063-3")
+
+        assertThat(result1[0].title).isEqualTo("Spring")
+        assertThat(result2[1].title).isEqualTo("Java")
+        assertThat(result3[2].title).isEqualTo("GCP")
+    }
 }
