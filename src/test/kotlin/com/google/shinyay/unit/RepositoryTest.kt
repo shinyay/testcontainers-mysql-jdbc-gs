@@ -60,6 +60,6 @@ class RepositoryTest {
         repository.saveBook(book)
         val result = repository.findBookByIsbn("978-4-7710-1061-2")
 
-        assertThat(result[0].title).isEqualTo("PersistenceAndFin")
+        assertThat(result[0].title).isEqualTo("PersistenceAndFind")
     }
 }
