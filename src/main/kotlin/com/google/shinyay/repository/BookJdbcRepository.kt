@@ -22,6 +22,6 @@ class BookJdbcRepository(val jdbcTemplate: JdbcTemplate) {
     }
 
     fun deleteByIsbn(isbn: String): Int {
-        return jdbcTemplate.update("delete * from books where isbn = ?", isbn)
+        return jdbcTemplate.update("delete from books where isbn = ?", isbn)
     }
 }
