@@ -20,4 +20,8 @@ class BookJdbcRepository(val jdbcTemplate: JdbcTemplate) {
         return jdbcTemplate.update("insert into books (isbn, title, author, price) values (?,?,?,?)",
             book.isbn, book.title, book.author, book.price)
     }
+
+    fun deleteByIsbn(isbn: String): Int {
+        return jdbcTemplate.update("delete * from books where isbn = ?", isbn)
+    }
 }
