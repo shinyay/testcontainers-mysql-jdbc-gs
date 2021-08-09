@@ -48,7 +48,7 @@ class RepositoryTest {
 
     @Test
     fun saveBookShouldReturnOne() {
-        val book = Book(isbn = "978-4-7710-1061-1", title = "Persistence", author = "shinyay", price = 500)
+        val book = Book(isbn = "978-4-7710-1061-1", title = "Persistence", author = "tester", price = 500)
         val result = repository.saveBook(book)
 
         assertThat(result).isEqualTo(1)
@@ -56,7 +56,7 @@ class RepositoryTest {
 
     @Test
     fun saveBookAndFindBookByIsbnShouldReturnBook() {
-        val book = Book(isbn = "978-4-7710-1061-2", title = "PersistenceAndFind", author = "shinyay", price = 550)
+        val book = Book(isbn = "978-4-7710-1061-2", title = "PersistenceAndFind", author = "tester", price = 550)
         repository.saveBook(book)
         val result = repository.findBookByIsbn("978-4-7710-1061-2")
 
@@ -68,5 +68,16 @@ class RepositoryTest {
         val result = repository.deleteByIsbn("978-4-7710-1063-3")
 
         assertThat(result).isEqualTo(1)
+    }
+
+    @Test
+    fun deleteBookByIsbnShouldReturnZero() {
+        val resultBefore = repository.findBookByIsbn("978-4-7710-1062-3")
+        assertThat(resultBefore.count()).isEqualTo(1)
+
+        repository.deleteByIsbn("978-4-7710-1062-3")
+
+        val resultAfter = repository.findBookByIsbn("978-4-7710-1062-3")
+        assertThat(resultAfter.count()).isEqualTo(1)
     }
 }
