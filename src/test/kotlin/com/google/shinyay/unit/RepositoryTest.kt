@@ -32,10 +32,6 @@ class RepositoryTest {
             {assertThat(result[1].title).isEqualTo("Java")},
             {assertThat(result[2].title).isEqualTo("GCP")}
         )
-
-//        assertThat(result[0].title).isEqualTo("Spring")
-//        assertThat(result[1].title).isEqualTo("Java")
-//        assertThat(result[2].title).isEqualTo("GCP")
     }
 
     @Test
