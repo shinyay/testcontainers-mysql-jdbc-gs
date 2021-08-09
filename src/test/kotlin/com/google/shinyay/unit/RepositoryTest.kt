@@ -78,6 +78,6 @@ class RepositoryTest {
         repository.deleteByIsbn("978-4-7710-1062-3")
 
         val resultAfter = repository.findBookByIsbn("978-4-7710-1062-3")
-        assertThat(resultAfter.count()).isEqualTo(1)
+        assertThat(resultAfter.count()).isEqualTo(0)
     }
 }
