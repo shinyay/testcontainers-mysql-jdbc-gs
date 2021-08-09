@@ -45,7 +45,7 @@ class RepositoryTest {
         val result3 = repository.findBookByIsbn("978-4-7710-1063-3")
 
         assertThat(result1[0].title).isEqualTo("Spring")
-        assertThat(result2[1].title).isEqualTo("Java")
-        assertThat(result3[2].title).isEqualTo("GCP")
+        assertThat(result2[0].title).isEqualTo("Java")
+        assertThat(result3[0].title).isEqualTo("GCP")
     }
 }
