@@ -1,5 +1,6 @@
 package com.google.shinyay.unit
 
+import com.google.shinyay.entity.Book
 import com.google.shinyay.repository.BookJdbcRepository
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -43,5 +44,13 @@ class RepositoryTest {
         assertThat(result1[0].title).isEqualTo("Spring")
         assertThat(result2[0].title).isEqualTo("Java")
         assertThat(result3[0].title).isEqualTo("GCP")
+    }
+
+    @Test
+    fun saveBookShouldReturnOne() {
+        val book = Book(isbn = "978-4-7710-1061-1", title = "Test", author = "shinyay", price = 500)
+        val result = repository.saveBook(book)
+
+        assertThat(result).isEqualTo(1)
     }
 }
